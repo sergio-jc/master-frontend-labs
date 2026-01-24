@@ -1,0 +1,31 @@
+@use "sass:color" as *;
+
+@mixin colors($base-color) {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  div {
+    width: 100px;
+    height: 100px;
+    background-color: $base-color;
+    color: complement($base-color);
+  }
+
+  .base {
+    background-color: $base-color;
+    color: complement($base-color);
+  }
+
+  .important {
+    $important-color: scale($base-color, $lightness: -40%);
+    background-color: $important-color;
+    color: complement($important-color);
+  }
+
+  .warning {
+    $warning-color: scale($base-color, $lightness: 60%);
+    background-color: $warning-color;
+    color: complement($warning-color);
+  }
+}

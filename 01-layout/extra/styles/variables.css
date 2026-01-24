@@ -1,0 +1,11 @@
+:root {
+  --primary-color: #8cc45a;
+  --secondary-color: #e1e1e1;
+  --divider-color: #333;
+  --divider: 1px solid var(--divider-color);
+  --text-primary-color: #fff;
+  --text-secondary-color: rgba(255, 255, 255, 0.7);
+  --background-primary-color: #121212;
+  --background-secondary-color: #222222;
+  --card-background-color: #474747;
+}

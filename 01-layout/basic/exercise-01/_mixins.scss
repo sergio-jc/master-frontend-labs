@@ -1,0 +1,33 @@
+@use "sass:color" as *;
+
+@mixin container($box-bg-color) {
+  display: flex;
+  gap: 0.5rem;
+
+  .box {
+    background-color: $box-bg-color;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: complement($box-bg-color);
+    border-radius: 0.5rem;
+
+    @for $i from 1 through 4 {
+      &.darken-#{$i} {
+        $darken-color: scale($box-bg-color, $lightness: $i * -15%);
+        background-color: $darken-color;
+        color: complement($darken-color);
+      }
+    }
+
+    @for $i from 1 through 4 {
+      &.lighten-#{$i} {
+        $lighten-color: scale($box-bg-color, $lightness: $i * 15%);
+        background-color: $lighten-color;
+        color: complement($lighten-color);
+      }
+    }
+  }
+}

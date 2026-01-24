@@ -1,0 +1,26 @@
+@use "mixins" as *;
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #202020;
+  display: flex;
+  flex-direction: column;
+  font-family: system-ui, sans-serif;
+  gap: 1rem;
+}
+
+.container-1 {
+  @include container(red);
+}
+
+.container-2 {
+  @include container(blue);
+}
+.container-3 {
+  @include container(green);
+}
