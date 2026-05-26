@@ -14,8 +14,8 @@ export const getOrganizationMembers = async ({ name }: { name: string } = { name
   return response.json()
 }
 
-export const getMember = async ({ name }: { name: string } = { name: "lemoncode" }) => {
-  const response = await fetch(`https://api.github.com/users/${name}`)
+export const getMember = async ({ login }: { login: string } = { login: "lemoncode" }) => {
+  const response = await fetch(`https://api.github.com/users/${login}`)
   if (!response.ok) {
     throw new Error("Failed to fetch member")
   }

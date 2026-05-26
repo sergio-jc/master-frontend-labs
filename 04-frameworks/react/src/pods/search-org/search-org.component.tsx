@@ -1,18 +1,19 @@
 import { Input } from "@/components/ui/input";
+import { routes } from "@/core";
 import { useDebounce } from "@/hooks/use-debounce";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 
 const SearchOrgComponent = () => {
-  const { organizationName } = useParams();
+  const { companyId } = useParams();
   const [organizationNameState, setOrganizationNameState] = useState<string>(
-    organizationName ?? "",
+    companyId ?? "",
   );
   const debouncedOrganizationName = useDebounce(organizationNameState, 500);
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate(`/${debouncedOrganizationName}`);
+    navigate(routes.companyDetails(debouncedOrganizationName ?? ""));
   }, [debouncedOrganizationName, navigate]);
 
   return (

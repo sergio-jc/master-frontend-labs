@@ -1,5 +1,5 @@
 import { getMember } from "@/services/organization";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 interface Member {
@@ -9,20 +9,23 @@ interface Member {
 }
 
 const MemberDetailComponent = () => {
-  const { memberName } = useParams();
+  const { memberId } = useParams();
   const [member, setMember] = useState<Member | null>(null);
   useEffect(() => {
-    if (!memberName) return;
-    getMember({ name: memberName as string }).then((member) => {
+    if (!memberId) return;
+    getMember({ login: memberId as string }).then((member) => {
       setMember(member);
     });
-  }, [memberName]);
+  }, [memberId]);
+
+  if (!member) return <p>Member not found</p>;
+
   return (
     <div>
-      <h1>{member?.login}</h1>
-      <img src={member?.avatar_url} alt={member?.login} />
-      <a href={member?.url} target="_blank" rel="noopener noreferrer">
-        {member?.url}
+      <h1>{member.login}</h1>
+      <img src={member.avatar_url} alt={member.login} />
+      <a href={member.url} target="_blank" rel="noopener noreferrer">
+        {member.url}
       </a>
     </div>
   );
