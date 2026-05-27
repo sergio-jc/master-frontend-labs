@@ -9,9 +9,9 @@ const NavbarComponent = () => {
       to: switchRoutes.organizations,
     },
     {
-      id: "members",
-      label: "Members",
-      to: switchRoutes.organizationMembers,
+      id: "rick-and-morty",
+      label: "Rick & Morty",
+      to: switchRoutes.rickAndMorty,
     },
   ];
   return (

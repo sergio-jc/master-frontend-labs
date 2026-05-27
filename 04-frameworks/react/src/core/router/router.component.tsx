@@ -5,11 +5,13 @@ import MemberScene from "@/scenes/member.scene";
 import OrganizationScene from "@/scenes/organization.scene";
 
 import { routes, switchRoutes } from "./routes";
+import HomeScene from "@/scenes/home.scene";
 
 function RouterComponent() {
   return (
     <div className="bg-black text-white min-h-screen w-full">
       <Routes>
+        <Route path={switchRoutes.root} element={<HomeScene />} />
         <Route
           path={switchRoutes.organizations}
           element={
