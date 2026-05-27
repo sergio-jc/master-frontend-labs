@@ -1,7 +1,7 @@
 import MainLayout from "@/layouts/main.layout";
-import MembersListContainer from "@/pods/members-list/members-list.container";
-import OrgDetailsContainer from "@/pods/org-details/org-details.container";
-import { SearchOrgContainer } from "@/pods/search-org/search-org.container";
+import MembersListContainer from "@/pods/organizations/members-list/members-list.container";
+import OrgDetailsContainer from "@/pods/organizations/org-details/org-details.container";
+import { SearchOrgContainer } from "@/pods/organizations/search-org/search-org.container";
 
 const OrganizationScene = () => {
   return (
