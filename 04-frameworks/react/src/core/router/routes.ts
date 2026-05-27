@@ -2,35 +2,39 @@ import { generatePath } from "react-router";
 
 interface SwitchRoutes {
   root: string;
-  companies: string;
-  companyDetails: string;
-  companyMembers: string;
-  companyMemberDetails: string;
+  organizations: string;
+  organizationDetails: string;
+  organizationMembers: string;
+  organizationMemberDetails: string;
 }
 
 export const switchRoutes: SwitchRoutes = {
   root: "/",
-  companies: "/companies",
-  companyDetails: "/companies/:companyId",
-  companyMembers: "/companies/:companyId/members",
-  companyMemberDetails: "/companies/:companyId/members/:memberId",
+  organizations: "/organizations",
+  organizationDetails: "/organizations/:organizationId",
+  organizationMembers: "/organizations/:organizationId/members",
+  organizationMemberDetails:
+    "/organizations/:organizationId/members/:memberId",
 };
 
 interface Routes extends Omit<
   SwitchRoutes,
-  "companyDetails" | "companyMemberDetails"
+  "organizationDetails" | "organizationMemberDetails"
 > {
-  companyDetails: (companyId: string) => string;
-  companyMemberDetails: (companyId: string, memberId: string) => string;
+  organizationDetails: (organizationId: string) => string;
+  organizationMemberDetails: (
+    organizationId: string,
+    memberId: string,
+  ) => string;
 }
 
 export const routes: Routes = {
   ...switchRoutes,
-  companyDetails: (companyId) =>
-    generatePath(switchRoutes.companyDetails, { companyId }),
-  companyMemberDetails: (companyId, memberId) =>
-    generatePath(switchRoutes.companyMemberDetails, {
-      companyId,
+  organizationDetails: (organizationId) =>
+    generatePath(switchRoutes.organizationDetails, { organizationId }),
+  organizationMemberDetails: (organizationId, memberId) =>
+    generatePath(switchRoutes.organizationMemberDetails, {
+      organizationId,
       memberId,
     }),
 };

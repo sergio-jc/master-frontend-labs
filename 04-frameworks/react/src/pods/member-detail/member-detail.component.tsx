@@ -1,6 +1,6 @@
-import { getMember } from "@/services/organization";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { getMember } from "./member-detail.api";
 
 interface Member {
   login: string;
