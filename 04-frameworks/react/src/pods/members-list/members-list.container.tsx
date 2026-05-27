@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { getOrganizationMembers } from "./members-list.api";
 import type { MemberListItem } from "./members-list.vm";
 import MembersListComponent from "./members-list.component";
+import { getOrganizationMembers } from "./repository";
 
 function MembersListContainer() {
   const { organizationId } = useParams();
@@ -10,8 +10,6 @@ function MembersListContainer() {
   const [organizationMembers, setOrganizationMembers] = useState<
     MemberListItem[]
   >([]);
-
-  console.log("organizationMembers Container", organizationMembers)
 
   useEffect(() => {
     if (!organizationId) return;

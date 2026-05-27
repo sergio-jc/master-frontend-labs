@@ -1,10 +1,10 @@
-import { Link } from "react-router";
-
-import { routes } from "@/core";
 import type { MemberListItem } from "./members-list.vm";
+import {
+  MemberItemComponent,
+  MembersListPaginationComponent,
+} from "./components";
 import { useMemo, useState } from "react";
 import { DEFAULT_MEMBERS_PER_PAGE } from "@/common/constants";
-import { Button } from "@/common/ui/button";
 import { Input } from "@/common/ui/input";
 
 interface Props {
@@ -41,6 +41,14 @@ function MembersListComponent(props: Props) {
     setPage(1);
   };
 
+  const onPreviousPage = () => {
+    setPage(page - 1);
+  };
+
+  const onNextPage = () => {
+    setPage(page + 1);
+  };
+
   return (
     <section className="space-y-4">
       <div className="flex items-center justify-between gap-4">
@@ -62,42 +70,19 @@ function MembersListComponent(props: Props) {
         <div className="flex flex-col gap-4">
           <ul className="flex flex-col gap-3">
             {paginatedMembersList?.map((member: MemberListItem) => (
-              <li key={member.login} className="contents">
-                <Link
-                  className="flex items-center gap-4 cursor-pointer border border-zinc-800 rounded-lg p-2"
-                  to={routes.organizationMemberDetails(
-                    organizationId ?? "",
-                    member.login,
-                  )}
-                >
-                  <img
-                    src={member.avatar_url}
-                    alt={member.login}
-                    className="w-10 aspect-square rounded-full border border-zinc-700 object-cover"
-                  />
-                  <div className="flex flex-col">
-                    <span className="font-semibold underline underline-offset-2">
-                      {member.login}
-                    </span>
-                  </div>
-                </Link>
-              </li>
+              <MemberItemComponent
+                key={member.login}
+                member={member}
+                organizationId={organizationId}
+              />
             ))}
           </ul>
-          <div className="flex items-center justify-center gap-2">
-            <Button onClick={() => setPage(page - 1)} disabled={page === 1}>
-              Previous
-            </Button>
-            <span>
-              {page} of {totalPages}
-            </span>
-            <Button
-              onClick={() => setPage(page + 1)}
-              disabled={page === totalPages}
-            >
-              Next
-            </Button>
-          </div>
+          <MembersListPaginationComponent
+            page={page}
+            totalPages={totalPages}
+            onPreviousPage={onPreviousPage}
+            onNextPage={onNextPage}
+          />
         </div>
       ) : (
         <p className="text-center text-zinc-500">No se encontraron miembros</p>
