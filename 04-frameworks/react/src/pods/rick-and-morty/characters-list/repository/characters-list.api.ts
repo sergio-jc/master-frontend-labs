@@ -13,7 +13,6 @@ export const getCharactersListApi = async ({ page, searchName }: { page: number,
   }
 
   baseUrl = `${baseUrl}?${queryParams.toString()}`;
-  console.log(baseUrl)
   const response = await fetch(baseUrl);
   if (!response.ok) {
     throw new Error("Failed to fetch characters list");
