@@ -1,9 +1,10 @@
 import MainLayout from '@/layouts/main.layout'
+import { CharactersList } from '@/pods/rick-and-morty'
 
 const RickAndMortyScene = () => {
   return (
     <MainLayout>
-      <div>RickAndMortyScene</div>
+      <CharactersList />
     </MainLayout>
   )
 }

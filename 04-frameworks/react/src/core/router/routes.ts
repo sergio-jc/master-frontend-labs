@@ -27,19 +27,20 @@ export const switchRoutes: SwitchRoutes = {
 
   // Rick & Morty API
   rickAndMorty: "/rick-and-morty",
-  rickAndMortyCharacters: "/rick-and-morty/characters",
+  rickAndMortyCharacters: "/rick-and-morty/characters/",
   rickAndMortyCharacterDetails: "/rick-and-morty/characters/:characterId",
 };
 
 interface Routes extends Omit<
   SwitchRoutes,
-  "organizationDetails" | "organizationMemberDetails"
+  "organizationDetails" | "organizationMemberDetails" | "rickAndMortyCharacterDetails"
 > {
   organizationDetails: (organizationId: string) => string;
   organizationMemberDetails: (
     organizationId: string,
     memberId: string,
   ) => string;
+  rickAndMortyCharacterDetails: (characterId: string) => string;
 }
 
 export const routes: Routes = {
@@ -51,4 +52,6 @@ export const routes: Routes = {
       organizationId,
       memberId,
     }),
+  rickAndMortyCharacterDetails: (characterId) =>
+    generatePath(switchRoutes.rickAndMortyCharacterDetails, { characterId }),
 };

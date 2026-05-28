@@ -1,7 +1,7 @@
 import type { MemberListItem } from "./members-list.vm";
 import {
   MemberItemComponent,
-  MembersListPaginationComponent,
+  PaginationComponent,
 } from "./components";
 import { useMemo, useState } from "react";
 import { DEFAULT_MEMBERS_PER_PAGE } from "@/common/constants";
@@ -77,7 +77,7 @@ function MembersListComponent(props: Props) {
               />
             ))}
           </ul>
-          <MembersListPaginationComponent
+          <PaginationComponent
             page={page}
             totalPages={totalPages}
             onPreviousPage={onPreviousPage}

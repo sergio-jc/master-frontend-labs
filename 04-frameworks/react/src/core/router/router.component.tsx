@@ -31,6 +31,10 @@ function RouterComponent() {
         />
         <Route
           path={switchRoutes.rickAndMorty}
+          element={<Navigate to={routes.rickAndMortyCharacters} />}
+        />
+        <Route
+          path={switchRoutes.rickAndMortyCharacters}
           element={<RickAndMortyScene />}
         />
       </Routes>

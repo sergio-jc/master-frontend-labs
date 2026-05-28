@@ -1,0 +1,1 @@
+export { default as OrgDetails } from "./org-details.container";

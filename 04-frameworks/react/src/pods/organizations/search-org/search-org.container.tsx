@@ -1,19 +1,24 @@
+import { useCallback } from "react";
 import { routes } from "@/core";
-import SearchOrgComponent from "./search-org.component";
 import { useNavigate, useParams } from "react-router";
+import MainSearchComponent from "@/common/components/main-search.component";
 
-export const SearchOrgContainer = () => {
+const SearchOrgContainer = () => {
   const { organizationId } = useParams();
   const navigate = useNavigate();
 
-  const onSearch = (organizationId: string) => {
+  const onSearch = useCallback((organizationId: string) => {
     navigate(routes.organizationDetails(organizationId ?? ""));
-  };
+  }, [navigate]);
 
   return (
-    <SearchOrgComponent
+    <MainSearchComponent
+      title="Search Organizations"
+      placeholder="Busca una organización..."
       handleSearch={onSearch}
-      defaultOrgName={organizationId ?? ""}
+      defaultSearch={organizationId ?? ""}
     />
   );
 };
+
+export default SearchOrgContainer;

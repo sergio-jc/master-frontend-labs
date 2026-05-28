@@ -7,7 +7,7 @@ interface Props {
   onNextPage: () => void;
 }
 
-const MembersListPaginationComponent: React.FC<Props> = (props) => {
+const PaginationComponent: React.FC<Props> = (props) => {
   const { page, totalPages, onPreviousPage, onNextPage } = props;
 
   return (
@@ -25,4 +25,4 @@ const MembersListPaginationComponent: React.FC<Props> = (props) => {
   );
 };
 
-export default MembersListPaginationComponent;
+export default PaginationComponent;
