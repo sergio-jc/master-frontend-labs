@@ -7,6 +7,7 @@ import OrganizationScene from "@/scenes/organization.scene";
 import { routes, switchRoutes } from "./routes";
 import HomeScene from "@/scenes/home.scene";
 import RickAndMortyScene from "@/scenes/rick-and-morty.scene";
+import CharacterScene from "@/scenes/character.scene";
 
 function RouterComponent() {
   return (
@@ -36,6 +37,10 @@ function RouterComponent() {
         <Route
           path={switchRoutes.rickAndMortyCharacters}
           element={<RickAndMortyScene />}
+        />
+        <Route
+          path={switchRoutes.rickAndMortyCharacterDetails}
+          element={<CharacterScene />}
         />
       </Routes>
     </div>

@@ -1,3 +1,5 @@
+import { routes } from "@/core";
+import { Link } from "react-router";
 import type { Character } from "../characters-list.vm";
 
 interface Props {
@@ -24,7 +26,10 @@ const CharacterCardComponent = (props: Props) => {
   const { character } = props;
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/60 transition-colors hover:bg-zinc-900/80">
+    <Link
+      to={routes.rickAndMortyCharacterDetails(String(character.id))}
+      className="group flex flex-col overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/60 transition-colors hover:bg-zinc-900/80"
+    >
       <div className="relative aspect-square overflow-hidden bg-zinc-800">
         <img
           src={character.image}
@@ -79,7 +84,7 @@ const CharacterCardComponent = (props: Props) => {
           </div>
         </dl>
       </div>
-    </article>
+    </Link>
   );
 };
 
