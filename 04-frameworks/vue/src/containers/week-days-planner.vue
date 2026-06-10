@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import DayMeals from '@/components/day-meals.vue';
+import DayMeals from '@/components/day-meals.vue'
 import { WeekDays } from '@/stores/meals'
 
 const weekDays = [
@@ -15,11 +15,6 @@ const weekDays = [
 
 <template>
   <div class="w-full flex flex-1 gap-3 overflow-x-auto p-2">
-    <DayMeals
-      v-for="day in weekDays"
-      :key="day.value"
-      :day="day.value"
-      :day-label="day.label"
-    />
+    <DayMeals v-for="day in weekDays" :key="day.value" :day="day.value" :day-label="day.label" />
   </div>
 </template>
