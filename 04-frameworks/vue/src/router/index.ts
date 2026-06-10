@@ -6,15 +6,15 @@ const router = createRouter({
   routes: [
     {
       path: routes.home.path,
-      component: () => import('../containers/all-meals.vue'),
+      component: () => import('../views/all-meals.vue'),
     },
     {
       path: routes.weekPlanner.path,
-      component: () => import('../containers/week-days-planner.vue'),
+      component: () => import('../views/week-days-planner.vue'),
     },
     {
       path: routes.favorites.path,
-      component: () => import('../containers/all-favorites.vue'),
+      component: () => import('../views/all-favorites.vue'),
     },
   ],
 })

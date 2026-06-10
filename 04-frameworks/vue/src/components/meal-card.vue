@@ -3,8 +3,8 @@ import { Edit, Heart, Trash } from '@lucide/vue'
 import { useMealsStore, type Meal } from '@/stores/meals'
 import { UIButton } from '@/ui'
 import ConfirmDialog from './confirm-dialog.vue'
-import { ref } from 'vue'
 import CreateEditMeal from './create-edit-meal.vue'
+import { useDialog } from '@/composables/use-dialog'
 
 interface Props {
   meal: Meal
@@ -12,34 +12,16 @@ interface Props {
   variant?: 'default' | 'minimal'
 }
 
-interface Emits {
-  (e: 'edit', id: Meal['id']): void
-  (e: 'delete', id: Meal): void
-}
-
 const { meal, isEditable = false, variant = 'default' } = defineProps<Props>()
-const emit = defineEmits<Emits>()
+const emit = defineEmits<{
+  (e: 'edit', mealId: string): void
+  (e: 'delete', meal: Meal): void
+}>()
 
 const mealsStore = useMealsStore()
 
-const isDeleteDialogOpen = ref(false)
-const isEditDialogOpen = ref(false)
-
-const handleOpenEditDialog = () => {
-  isEditDialogOpen.value = true
-}
-
-const handleCloseEditDialog = () => {
-  isEditDialogOpen.value = false
-}
-
-const handleOpenDeleteDialog = () => {
-  isDeleteDialogOpen.value = true
-}
-
-const handleCloseDeleteDialog = () => {
-  isDeleteDialogOpen.value = false
-}
+const { isOpen: isDeleteDialogOpen, open: openDeleteDialog, close: closeDeleteDialog } = useDialog()
+const { isOpen: isEditDialogOpen, open: openEditDialog, close: closeEditDialog } = useDialog()
 
 const handleToggleFavorite = () => {
   if (isEditable) {
@@ -79,10 +61,10 @@ const handleDelete = () => {
           >
             <Heart :size="20" :fill="meal.isFavorite ? 'currentColor' : 'none'" stroke-width="2" />
           </UIButton>
-          <UIButton variant="icon" @click="handleOpenEditDialog" aria-label="Edit meal">
+          <UIButton variant="icon" @click="openEditDialog" aria-label="Edit meal">
             <Edit :size="20" />
           </UIButton>
-          <UIButton variant="icon" @click="handleOpenDeleteDialog" aria-label="Delete meal">
+          <UIButton variant="icon" @click="openDeleteDialog" aria-label="Delete meal">
             <Trash :size="20" />
           </UIButton>
         </template>
@@ -116,7 +98,7 @@ const handleDelete = () => {
     cancel-label="Cancel"
     variant="destroy"
     @confirm="handleDelete"
-    @cancel="handleCloseDeleteDialog"
+    @cancel="closeDeleteDialog"
   >
     <p>Are you sure you want to delete this meal?</p>
   </ConfirmDialog>
@@ -124,8 +106,7 @@ const handleDelete = () => {
   <CreateEditMeal
     :is-open="isEditDialogOpen"
     :meal="meal"
-    title="Edit meal"
-    @cancel="handleCloseEditDialog"
+    @cancel="closeEditDialog"
     @submit="handleEdit"
   />
 </template>

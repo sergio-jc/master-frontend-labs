@@ -51,12 +51,13 @@ onUnmounted(() => {
       @click.self="handleCancel"
     >
       <form
-        aria-alert="true"
         role="alertdialog"
-        class="w-full max-w-md rounded-2xl border border-zinc-800 bg-zinc-950 p-5"
+        aria-modal="true"
+        aria-labelledby="dialog-title"
         @submit.prevent="handleConfirm"
+        class="w-full max-w-md rounded-2xl border border-zinc-800 bg-zinc-950 p-5"
       >
-        <h2 class="text-lg font-semibold text-zinc-100">
+        <h2 class="text-lg font-semibold text-zinc-100" id="dialog-title">
           {{ props.title }}
         </h2>
 

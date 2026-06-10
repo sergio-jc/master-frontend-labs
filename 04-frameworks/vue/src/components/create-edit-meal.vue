@@ -3,11 +3,12 @@ import { computed, ref, watch } from 'vue'
 import ConfirmDialog from './confirm-dialog.vue'
 import { UIInput, UISelect } from '@/ui'
 import { Type, useMealsStore, WeekDays, type Meal } from '@/stores/meals'
+import { DAY_OPTIONS } from '@/constants/week-days.ts'
 
 type MealFormValues = Omit<Meal, 'id'>
 
 interface Props {
-  isOpen?: boolean
+  isOpen: boolean
   meal?: Meal
   defaultWeekDays?: WeekDays[]
 }
@@ -32,6 +33,10 @@ const mealForm = ref<MealFormValues>({
   type: Type.BREAKFAST,
 })
 
+const modalTitle = computed(() => {
+  return props.meal ? 'Edit meal' : 'Add meal'
+})
+
 watch(
   () => props.defaultWeekDays,
   (newWeekDays) => {
@@ -52,16 +57,6 @@ watch(
   { immediate: true },
 )
 
-const dayOptions = [
-  { value: WeekDays.MONDAY, label: 'Monday' },
-  { value: WeekDays.TUESDAY, label: 'Tuesday' },
-  { value: WeekDays.WEDNESDAY, label: 'Wednesday' },
-  { value: WeekDays.THURSDAY, label: 'Thursday' },
-  { value: WeekDays.FRIDAY, label: 'Friday' },
-  { value: WeekDays.SATURDAY, label: 'Saturday' },
-  { value: WeekDays.SUNDAY, label: 'Sunday' },
-]
-
 const isDaySelected = (day: WeekDays) => mealForm.value.weekDays.includes(day)
 
 const toggleDay = (day: WeekDays) => {
@@ -81,10 +76,13 @@ const resetForm = () => {
   if (props.meal) {
     mealForm.value = { ...props.meal, weekDays: [...props.meal.weekDays] }
   } else {
-    mealForm.value.name = ''
-    mealForm.value.description = ''
-    mealForm.value.weekDays = []
-    mealForm.value.type = Type.BREAKFAST
+    mealForm.value = {
+      name: '',
+      description: '',
+      weekDays: props.defaultWeekDays ? [...props.defaultWeekDays] : [],
+      isFavorite: false,
+      type: Type.BREAKFAST,
+    }
   }
 }
 
@@ -126,7 +124,7 @@ const handleCancel = () => {
 <template>
   <ConfirmDialog
     v-if="props.isOpen"
-    title="Add meal"
+    :title="modalTitle"
     confirm-label="Save meal"
     cancel-label="Cancel"
     @confirm="handleSubmit"
@@ -169,7 +167,7 @@ const handleCancel = () => {
         <span class="text-[0.85rem] text-zinc-400">Days</span>
         <div class="flex flex-wrap gap-2">
           <button
-            v-for="dayOption in dayOptions"
+            v-for="dayOption in DAY_OPTIONS"
             :key="dayOption.value"
             type="button"
             class="rounded-lg border px-3 py-1.5 text-sm transition-colors duration-200"

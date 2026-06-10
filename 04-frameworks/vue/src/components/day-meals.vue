@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { UIButton } from '@/ui'
 import { useMealsStore, WeekDays } from '@/stores/meals'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import CreateEditMeal from './create-edit-meal.vue'
 import { Plus, Trash } from '@lucide/vue'
 import MealCard from './meal-card.vue'
 import ConfirmDialog from './confirm-dialog.vue'
+import { useDialog } from '@/composables/use-dialog'
 
 interface Props {
   day: WeekDays
@@ -16,29 +17,16 @@ const { day, dayLabel } = defineProps<Props>()
 const mealsStore = useMealsStore()
 
 const meals = computed(() => mealsStore.getMealByDay(day))
-const isOpenDeleteDialog = ref(false)
-
-const handleCloseDeleteDialog = () => {
-  isOpenDeleteDialog.value = false
-}
-
-const handleOpenDeleteDialog = () => {
-  isOpenDeleteDialog.value = true
-}
-
-const isCreateMealOpen = ref(false)
-
-const handleCloseCreateMealDialog = () => {
-  isCreateMealOpen.value = false
-}
-
-const handleOpenCreateMealDialog = () => {
-  isCreateMealOpen.value = true
-}
+const { isOpen: isDeleteDialogOpen, open: openDeleteDialog, close: closeDeleteDialog } = useDialog()
+const {
+  isOpen: isCreateMealOpen,
+  open: openCreateMealDialog,
+  close: closeCreateMealDialog,
+} = useDialog()
 
 const handleClearWeekMeals = () => {
   mealsStore.clearWeekMeals(day)
-  handleCloseDeleteDialog()
+  closeDeleteDialog()
 }
 </script>
 <template>
@@ -50,10 +38,10 @@ const handleClearWeekMeals = () => {
         <h2 class="text-zinc-100 text-xl p-3 font-semibold">{{ dayLabel }}</h2>
       </header>
       <div class="flex items-center gap-2">
-        <UIButton variant="icon" @click="handleOpenDeleteDialog" aria-label="Delete meals">
+        <UIButton variant="icon" @click="openDeleteDialog" aria-label="Delete meals">
           <Trash :size="20" />
         </UIButton>
-        <UIButton variant="icon" @click="handleOpenCreateMealDialog" aria-label="Add meal">
+        <UIButton variant="icon" @click="openCreateMealDialog" aria-label="Add meal">
           <Plus :size="20" />
         </UIButton>
       </div>
@@ -67,21 +55,20 @@ const handleClearWeekMeals = () => {
   </div>
 
   <ConfirmDialog
-    v-if="isOpenDeleteDialog"
+    v-if="isDeleteDialogOpen"
     title="Delete meals"
     confirm-label="Delete"
     cancel-label="Cancel"
     variant="destroy"
     @confirm="handleClearWeekMeals"
-    @cancel="handleCloseDeleteDialog"
+    @cancel="closeDeleteDialog"
   >
     <p>Are you sure you want to delete all meals for this day?</p>
   </ConfirmDialog>
 
   <CreateEditMeal
     :is-open="isCreateMealOpen"
-    title="Add meal"
-    @cancel="handleCloseCreateMealDialog"
+    @cancel="closeCreateMealDialog"
     :default-week-days="[day]"
   />
 </template>

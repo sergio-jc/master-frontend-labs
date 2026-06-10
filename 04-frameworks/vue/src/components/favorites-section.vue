@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { useMealsStore } from '@/stores/meals'
 import { UIButton } from '@/ui'
-import UiSection from '@/ui/ui-section.vue'
+import { UISection } from '@/ui'
 import { computed } from 'vue'
 import MealCard from './meal-card.vue'
 import { useRouter } from 'vue-router'
-import { routes } from '@/router/routes.ts'
+import { routes } from '@/router/routes'
 
 const router = useRouter()
 const mealsStore = useMealsStore()
@@ -19,7 +19,7 @@ const handleRedirectToHome = () => {
 </script>
 
 <template>
-  <UiSection title="Favorites" description="List of all your favorite meals.">
+  <UISection title="Favorites" description="List of all your favorite meals.">
     <div v-if="!hasFavorites" class="flex flex-col gap-2 items-center justify-center p-6">
       <p class="text-zinc-300">No favorites yet. Add a meal to your favorites list.</p>
       <UIButton variant="ghost" @click="handleRedirectToHome">Add favorite meal</UIButton>
@@ -27,5 +27,5 @@ const handleRedirectToHome = () => {
     <template v-else>
       <MealCard v-for="meal in favoriteMeals" :key="meal.id" :meal="meal" />
     </template>
-  </UiSection>
+  </UISection>
 </template>
