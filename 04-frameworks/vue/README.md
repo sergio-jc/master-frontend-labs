@@ -14,19 +14,19 @@ The app is organized into three views accessible from the navigation bar:
 
 The home view. Displays all planned meals in a responsive grid with a search input to filter by name. From here you can add new meals, edit existing ones, toggle favorites, or delete with a confirmation dialog.
 
-![home page](/public/home.png)
+![home page](public/home.png)
 
 #### 2. ❤️ Favorites
 
 Shows only the meals marked as favorites, displayed in a minimal read-only card style.
 
-![favorites page](/public/favorites.png)
+![favorites page](public/favorites.png)
 
 #### 3. 🗓️ Week Visualizer
 
 Displays the full week (Monday to Sunday) as a horizontal scrollable board. Each day column lists the meals assigned to it, with a button to clear the day's plan (with confirmation).
 
-![week visualizer page](/public/week-visualizer.png)
+![week visualizer page](public/week-visualizer.png)
 
 ---
 
