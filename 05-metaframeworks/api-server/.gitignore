@@ -1,0 +1,17 @@
+/node_modules
+/dist
+/build
+/coverage
+/logs
+/temp
+/uploads
+/public
+/static
+/templates
+/views
+/config
+/env
+/env.local
+
+pnpm-lock.yaml
+pnpm-workspace.yaml
