@@ -4,6 +4,7 @@ import { cors } from "hono/cors";
 import { serve } from "@hono/node-server";
 import { serveStatic } from "@hono/node-server/serve-static";
 import { houses } from "./mock-data";
+import { HTTPException } from "hono/http-exception";
 
 let db = {
   houses,
@@ -20,6 +21,7 @@ app.get("/api/houses", (context) => {
 });
 
 app.get("/api/houses/:id", (context) => {
+  // throw new HTTPException(404, { message: 'Not Found' })
   return context.json(db.houses.find((c) => c.id === context.req.param("id")));
 });
 
