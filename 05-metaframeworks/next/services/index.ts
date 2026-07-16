@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 
 const API_URL = "http://localhost:3001";
 
-export const getHouses = async (): Promise<House[]> => {
-  const response = await fetch(`${API_URL}/api/houses`);
+export const getHouses = async (options?: RequestInit): Promise<House[]> => {
+  const response = await fetch(`${API_URL}/api/houses`, options);
   return response.json();
 };
 
