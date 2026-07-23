@@ -1,7 +1,15 @@
 <script setup lang="ts">
 import { SearchIcon } from "lucide-vue-next";
 
-const search = ref("");
+interface Props {
+  searchTerm: string;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  searchTerm: "",
+});
+
+const search = ref(props.searchTerm ?? "");
 const updateSearchParams = useUpdateSearchParams();
 const debouncedSearch = useDebounce(search, 500);
 

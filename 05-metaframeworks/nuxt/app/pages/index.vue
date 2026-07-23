@@ -10,7 +10,7 @@ const searchTerm = computed(() => (route.query.search as string) ?? "");
   <div className="flex-1 flex flex-col gap-4">
     <div className="flex justify-between items-center">
       <h2 className="text-2xl font-bold">Houses List</h2>
-      <Search />
+      <Search :search-term="searchTerm" />
     </div>
     <HousesList :search-term="searchTerm" />
   </div>
