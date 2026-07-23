@@ -14,7 +14,7 @@ export default async function Home({
     <div className="flex-1 flex flex-col gap-4">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Houses List</h2>
-        <Search />
+        <Search searchTerm={search} />
       </div>
       <Suspense key={search} fallback={<div>Loading Houses List...</div>}>
         <HousesList searchTerm={search} />

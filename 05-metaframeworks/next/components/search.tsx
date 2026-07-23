@@ -4,8 +4,13 @@ import { useUpdateSearchParams } from "@/hooks/use-update-search-params";
 import { SearchIcon } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
-export default function Search() {
-  const [search, setSearch] = useState("");
+interface Props {
+  searchTerm: string;
+}
+
+export default function Search(props: Props) {
+  const { searchTerm } = props;
+  const [search, setSearch] = useState(searchTerm ?? "");
   const updateSearchParams = useUpdateSearchParams();
   const debouncedSearch = useDebounce(search, 500);
 
@@ -15,7 +20,6 @@ export default function Search() {
   };
 
   useEffect(() => {
-    console.log("first")
     updateSearchParams({ search: debouncedSearch });
   }, [debouncedSearch, updateSearchParams]);
 
