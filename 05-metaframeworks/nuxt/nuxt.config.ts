@@ -29,4 +29,10 @@ export default defineNuxtConfig({
   image: {
     domains: ["localhost:3001"],
   },
+  routeRules: {
+    "/**": { prerender: true },
+  },
+  nitro: {
+    prerender: { crawlLinks: true },
+  },
 });
