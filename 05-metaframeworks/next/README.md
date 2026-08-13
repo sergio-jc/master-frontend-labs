@@ -1,5 +1,7 @@
 # Next.js Lab — Rural Houses
 
+![Next - Detail page](docs/detail-page.png)
+
 ### 📘 Overview
 
 A hands-on lab focused on **Next.js 16 (App Router)**, built as part of a metaframeworks module. The goal was to implement a small "rural houses" booking-style app — a listing screen and a detail screen — consuming a mock REST API, while choosing a rendering strategy (SSG, ISR, SSR…) that fits each screen's needs. This same exercise was solved with two other metaframeworks in this repo ([Nuxt](../nuxt) and [TanStack Start](../tanstack-start)) so they can be compared side by side.
