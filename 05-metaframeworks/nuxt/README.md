@@ -1,6 +1,6 @@
 # Nuxt Lab — Rural Houses
 
-![Nuxt - Detail page](/docs/detail-page.png)
+![Nuxt - Detail page](docs/detail-page.png)
 
 ### 📘 Overview
 
