@@ -1,6 +1,6 @@
 # TanStack Start Lab — Rural Houses
 
-![TanStack - Detail page](/docs/detail-page.png)
+![TanStack - Detail page](docs/detail-page.png)
 
 ### 📘 Overview
 
