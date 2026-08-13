@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { getHouses } from "~/services";
 import type { House } from "~/types";
 
 interface Props {

@@ -1,6 +1,6 @@
 import type { House } from "@/types";
 
-const API_URL = "http://localhost:3001";
+const { API_URL } = getEnv();
 
 export const getHouses = async (options?: RequestInit): Promise<House[]> => {
   const response = await fetch(`${API_URL}/api/houses`, options);

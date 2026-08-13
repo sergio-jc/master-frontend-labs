@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     },
   ],
 
+  // Defaults, overridable via NUXT_PUBLIC_<KEY> env vars (see .env.example)
   runtimeConfig: {
     public: {
       apiUrl: "http://localhost:3001",

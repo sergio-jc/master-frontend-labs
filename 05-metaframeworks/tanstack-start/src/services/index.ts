@@ -1,7 +1,8 @@
 import { notFound } from "@tanstack/react-router";
 import type { House } from "@/types";
+import { env } from "@/lib/env";
 
-const API_URL = "http://localhost:3001";
+const API_URL = env.API_URL;
 
 export const getHouses = async (options?: RequestInit): Promise<House[]> => {
   const response = await fetch(`${API_URL}/api/houses`, options);
